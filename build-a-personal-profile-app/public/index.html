@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camper Bot — Digital Profile</title>
+  <style>
+    :root {
+      --bg-1: #0f0c29;
+      --bg-2: #302b63;
+      --bg-3: #24243e;
+      --accent: #00f2ff;
+      --accent-2: #ff00cc;
+      --text: #f5f5f7;
+      --muted: #a0a0b8;
+      --glass: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-3));
+      background-size: 400% 400%;
+      animation: aurora 18s ease infinite;
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+
+    @keyframes aurora {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .noise {
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      width: min(880px, 92vw);
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: clamp(2rem, 5vw, 4rem);
+      backdrop-filter: blur(22px);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.1);
+      transform-style: preserve-3d;
+      transition: transform 0.2s ease-out;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 12px rgba(0,242,255,0.45);
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 7vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.05;
+      background: linear-gradient(90deg, var(--text), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.6rem;
+    }
+
+    .tagline {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.55;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin: 2rem 0;
+    }
+
+    .tile {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.4rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      cursor: default;
+    }
+
+    .tile:hover {
+      transform: translateY(-6px) scale(1.01);
+      border-color: rgba(0,242,255,0.35);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.35), 0 0 30px rgba(0,242,255,0.12);
+    }
+
+    .tile h2 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .tile ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .tile li {
+      font-size: 0.92rem;
+      font-weight: 500;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(0,242,255,0.08);
+      color: var(--accent);
+      border: 1px solid rgba(0,242,255,0.15);
+    }
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      justify-content: center;
+      margin-top: 2.2rem;
+    }
+
+    .cta a, .cta button {
+      text-decoration: none;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.85rem 1.8rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .primary {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      color: #070510;
+      box-shadow: 0 8px 24px rgba(0,242,255,0.25);
+    }
+
+    .secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .cta a:hover, .cta button:hover {
+      transform: translateY(-2px);
+    }
+
+    .primary:hover {
+      box-shadow: 0 12px 32px rgba(0,242,255,0.4);
+    }
+
+    .secondary:hover {
+      border-color: rgba(255,255,255,0.35);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .console {
+      margin-top: 2rem;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1rem 1.3rem;
+      font-family: 'SFMono-Regular', Menlo, Consolas, monospace;
+      font-size: 0.82rem;
+      color: #b8f2b8;
+      min-height: 120px;
+      max-height: 240px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      box-shadow: inset 0 0 28px rgba(0,0,0,0.35);
+    }
+
+    .console::-webkit-scrollbar { width: 8px; }
+    .console::-webkit-scrollbar-track { background: transparent; }
+    .console::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
+
+    .hidden { display: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      body { animation: none; }
+      .tile, .cta a, .cta button { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <main class="card" id="card">
+    <header>
+      <span class="badge">Independent Contractor</span>
+      <h1>Camper Bot</h1>
+      <p class="tagline">Full-stack mercenary shipping clean APIs, luminous UIs, and conversion-driven interfaces.</p>
+    </header>
+
+    <section class="grid">
+      <article class="tile">
+        <h2>Hobbies</h2>
+        <ul id="hobbies"></ul>
+      </article>
+      <article class="tile">
+        <h2>Skills</h2>
+        <ul id="skills"></ul>
+      </article>
+      <article class="tile">
+        <h2>Stack</h2>
+        <ul>
+          <li>Node.js</li>
+          <li>Express</li>
+          <li>TypeScript</li>
+          <li>Python</li>
+        </ul>
+      </article>
+    </section>
+
+    <div class="cta">
+      <button class="primary" id="fetchBtn">Fetch /api/profile</button>
+      <a class="secondary" href="/" target="_blank">Open homepage route</a>
+    </div>
+
+    <pre class="console" id="console">// Click "Fetch /api/profile" to see live JSON from the Express server.</pre>
+  </main>
+
+  <script>
+    const card = document.getElementById('card');
+    document.addEventListener('mousemove', (e) => {
+      const { innerWidth, innerHeight } = window;
+      const x = (e.clientX / innerWidth - 0.5) * 10;
+      const y = (e.clientY / innerHeight - 0.5) * -10;
+      card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    });
+
+    const renderTags = (id, items) => {
+      const list = document.getElementById(id);
+      list.innerHTML = items.map(i => `<li>${i}</li>`).join('');
+    };
+
+    const log = (msg) => {
+      const c = document.getElementById('console');
+      c.textContent = typeof msg === 'object' ? JSON.stringify(msg, null, 2) : msg;
+    };
+
+    document.getElementById('fetchBtn').addEventListener('click', async () => {
+      log('Fetching profile from /api/profile...');
+      try {
+        const res = await fetch('/api/profile');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        renderTags('hobbies', data.hobbies);
+        renderTags('skills', data.skills);
+        log(data);
+      } catch (err) {
+        log(`Error: ${err.message}`);
+      }
+    });
+
+    // Initial load
+    fetch('/api/profile')
+      .then(r => r.json())
+      .then(data => {
+        renderTags('hobbies', data.hobbies);
+        renderTags('skills', data.skills);
+      })
+      .catch(() => {});
+  </script>
+</body>
+</html>
