@@ -32,6 +32,9 @@ When you input an integer into this vault, you aren't just checking a number. Yo
 
 Pick up the integer. Dial the API. Close the algorithm.
 
+## DEMO
+https://codepen.io/editor/JCaesar45/pen/01a0158c-25b3-7f9f-a783-6217cf5eeef1
+
 
 ### References
 
