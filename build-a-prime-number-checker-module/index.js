@@ -29,12 +29,7 @@ function isPrime(num) {
   return true;
 }
 
-<<<<<<< HEAD
 // Export the function using module.exports
 module.exports = {
   isPrime
 };
-=======
-// Export the function directly
-module.exports = isPrime;
->>>>>>> cbf6a2ccaa5b4596cf4c14db18b2c042c0918a97
