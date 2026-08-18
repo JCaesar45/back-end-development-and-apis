@@ -1,0 +1,142 @@
+** start of index.html **
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jordan Leturgez Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <a href="#welcome-section">Welcome</a>
+    <a href="#projects">Projects</a>
+    <a id="profile-link" href="https://github.com/JCaesar45" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </nav>
+
+  <section id="welcome-section">
+    <h1>Welcome to Jordan Leturgez's Portfolio</h1>
+  </section>
+
+  <section id="projects">
+    <h2>My Projects</h2>
+    <div class="project-tile">
+      <a href="https://github.com/JCaesar45/Page-View-Time-Series-Visualizer" target="_blank" rel="noopener noreferrer">
+        Sample Project 1
+      </a>
+    </div>
+    <div class="project-tile">
+      <a href="https://github.com/JCaesar45/Visualize-Data-with-a-Bar-Chart" target="_blank" rel="noopener noreferrer">
+        Sample Project 2
+      </a>
+    </div>
+  </section>
+</body>
+</html>
+
+
+** end of index.html **
+
+** start of styles.css **
+
+/* Reset some default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #222;
+}
+
+/* Navbar styles */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #004466;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 0;
+  z-index: 1000;
+}
+
+#navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#navbar a:hover {
+  background-color: #006699;
+}
+
+/* Welcome section */
+#welcome-section {
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #007acc, #004466);
+  color: white;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+/* Projects section */
+#projects {
+  padding: 4rem 1rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#projects h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+  color: #004466;
+}
+
+.project-tile {
+  background-color: #f4f4f4;
+  border: 2px solid #004466;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.project-tile a {
+  color: #004466;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.project-tile:hover {
+  transform: scale(1.02);
+}
+
+/* Media Query: Adjust layout on small screens */
+@media (max-width: 600px) {
+  #navbar {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  #projects {
+    padding: 2rem 1rem;
+  }
+}
+
+
+** end of styles.css **
+
